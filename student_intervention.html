@@ -204,7 +204,7 @@ A: Identifying students for early intervention is a classification problem. Stud
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Import libraries</span>
@@ -219,7 +219,7 @@ A: Identifying students for early intervention is a classification problem. Stud
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Read student data</span>
@@ -267,11 +267,11 @@ A: Identifying students for early intervention is a classification problem. Stud
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">n_students</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># doesn&#39;t count the last column because it is the label</span>
 
 <span class="n">n_passed</span> <span class="o">=</span> <span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;yes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">n_failed</span> <span class="o">=</span> <span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;no&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -296,7 +296,7 @@ A: Identifying students for early intervention is a classification problem. Stud
 <pre>Total number of students: 395
 Number of students who passed: 265
 Number of students who failed: 130
-Number of features: 31
+Number of features: 30
 Graduation rate of the class: 67.09%
 </pre>
 </div>
@@ -321,7 +321,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Extract feature (X) and target (y) columns</span>
@@ -395,7 +395,7 @@ Feature values:-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Preprocess feature columns</span>
@@ -453,7 +453,7 @@ Feature values:-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># First, decide how many training vs test samples you want</span>
@@ -504,23 +504,26 @@ Test set: 95 samples
 <ul>
 <li>What are the general applications of this model? What are its strengths and weaknesses? (Q1)</li>
 <li>Given what you know about the data so far, why did you choose this model to apply? (Q2)</li>
-<li>Fit this model to the training data, try to predict labels (for both training and test sets), and measure the F<sub>1</sub> score. Repeat this process with different training set sizes (100, 200, 300), keeping test set constant.</li>
+<li>Fit this model to the training data, try to predict labels (for both training and test sets), and measure the F<sub>1</sub> score. Repeat this process with different training set sizes (100, 200, 300), keeping test set constant. (Q3)</li>
 </ul>
 <p>Produce a table showing training time, prediction time, F<sub>1</sub> score on training set and F<sub>1</sub> score on test set, for each training set size.</p>
 <ol>
 <li>Logistic Regression<ul>
 <li>(A1)This model is mainly utilized for binary classification. Logistic Regression is simple but powerful enough to train simple data and yield reasonable performances. By using this model, we can easily understand the effects of predictors under controlling the effects of other variables. Due to the its simplicity, it takes relatively short time to train underlying relationships of data. On the other hand, its simplicity can give high bias when data is too complex to be trained by Logistic Regression.</li>
 <li>(A2)I aimed to apply this model because logistic regression works well for data of simplicity. Complex models can have high variance when the data is simple enough to be modeled by simpler model such as Logistic Regression. </li>
+<li>(A3)Logistic Regression shows the best performance for both traing set and test set when the size of training set is 100. As training set sizes increase, training errors also get increased; it implies that Logistic Regression has high biases. That is, Logistic Regression may be too simple to train underlying relationships between those features and the label. Regarding computation time, Logistic Regression worked in a short time; it only took 0.003 sec to train data of size 300. It shows its big strength on computational costs.</li>
 </ul>
 </li>
 <li>SVM with rbf kernel<ul>
-<li>(A1)SVM is mainly used for classification problems and it also works for regression problems. It has a powerful trick called kernel. By using different types of kernel functions, we can model data of different shapes. On the contrary, SVM has a weakness that it is too slow to train underlying data. Also, SVM has low explanatory power than simple algorithms such as Logistic Regression. That is, it is hard to understand what is going on under SVM.</li>
+<li>(A1)SVM is mainly used for classification problems and it also works for regression problems. It has a powerful trick called kernel. By using different types of kernel functions, we can model data of different shapes. On the contrary, SVM usually takes more time and high computaional costs. Also, SVM has low explanatory power than simple algorithms such as Logistic Regression. That is, it is difficult to understand what is going on under SVM.</li>
 <li>(A2)I chose this model to train complex data by using kernel tricks. RBF kernel helps to understand nonlinear relationships and it would show better performances than simpler models (e.g., Logistic Regression) for complex data.</li>
+<li>(A3)SVM shows promising results. As training set sizes increase, training errors tend to be decreased. While this model shows the best performance when the size of training set is 200, there is no big differences with the error for the training set size of 300. It implies that SVM has an appropriate level of complexities to understand the underlying patterns. Changes of test set sizes do not have a big impact on test error. SVM shows the best test error when the test size is 100 and 200 (scores are equal for the both settings), and has a minor drop of F1 score with test set sizes of 300. It implies that SVM may not overfit to the data and can generlize underlying relationships of data well. Regading computational cost, it took more time than Logistic Regression, while it is enduarable (0.006).</li>
 </ul>
 </li>
 <li>Adaboost<ul>
 <li>(A1)Adaboost is one sort of ensemble method that combines multiple weak classifiers. It is utilized for classification problems. It shows great performances for real world problems. By combining multiple weak classifiers (i.e., Decision Tree), this model shows good performances with preventing for overfitting. On the other hand, Adaboost is sensitive to outliers because it uses weak classifier of high biases. Nevertheless, because Adaboost combines multiple weak classifiers, the combined model tends to be a strong classifier of low bias. Another weakness is the computing time. Because this model combines multiple classifiers, it generally takes longer time than classifiers using a single model.</li>
 <li>(A2)I chose Adaboost because this model is known to show the best performances among out-of-the-box classifiers.</li>
+<li>(A3)Adaboost shows the best performances over all other candidates. Although training errors decrease as training set sizes increase, it shows the best test score across all other options. When the size is 200, F1 score is 0.7794. However, performances vary a lot with the size changes. When the size of test set is 300, the F1 score dropped to 0.75. Adaboost takes relatively longer than the other algorithms. It took 0.084 seconds to train 300 instances.</li>
 </ul>
 </li>
 </ol>
@@ -531,7 +534,7 @@ Test set: 95 samples
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Train a model</span>
@@ -565,7 +568,7 @@ Test set: 95 samples
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training LogisticRegression...
 Done!
-Training time (secs): 0.006
+Training time (secs): 0.005
 LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
           intercept_scaling=1, max_iter=100, multi_class=&apos;ovr&apos;, n_jobs=1,
           penalty=&apos;l2&apos;, random_state=None, solver=&apos;liblinear&apos;, tol=0.0001,
@@ -580,7 +583,7 @@ LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Predict on training set and compute F1 score</span>
@@ -610,8 +613,8 @@ LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Predicting labels using LogisticRegression...
 Done!
-Prediction time (secs): 0.002
-F1 score for training set: 0.820512820513
+Prediction time (secs): 0.003
+F1 score for training set: 0.864864864865
 </pre>
 </div>
 </div>
@@ -622,7 +625,7 @@ F1 score for training set: 0.820512820513
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Predict on test data</span>
@@ -642,7 +645,7 @@ F1 score for training set: 0.820512820513
 <pre>Predicting labels using LogisticRegression...
 Done!
 Prediction time (secs): 0.000
-F1 score for test set: 0.810810810811
+F1 score for test set: 0.736842105263
 </pre>
 </div>
 </div>
@@ -653,17 +656,31 @@ F1 score for test set: 0.810810810811
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Train and predict using different training set sizes</span>
 <span class="k">def</span> <span class="nf">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;==========================================&quot;</span>
+    <span class="n">X_train_subset</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+    <span class="n">y_train_subset</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+    <span class="k">print</span> <span class="s2">&quot;Training set size: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train_subset</span><span class="p">))</span>
+    <span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train_subset</span><span class="p">,</span> <span class="n">y_train_subset</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s2">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train_subset</span><span class="p">,</span> <span class="n">y_train_subset</span><span class="p">))</span>
+    <span class="k">print</span> <span class="s2">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+    <span class="k">print</span> <span class="s2">&quot;------------------------------------------&quot;</span>
+    <span class="n">X_train_subset</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span>
+    <span class="n">y_train_subset</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span>
+    <span class="k">print</span> <span class="s2">&quot;Training set size: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train_subset</span><span class="p">))</span>
+    <span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train_subset</span><span class="p">,</span> <span class="n">y_train_subset</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s2">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train_subset</span><span class="p">,</span> <span class="n">y_train_subset</span><span class="p">))</span>
+    <span class="k">print</span> <span class="s2">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
     <span class="k">print</span> <span class="s2">&quot;------------------------------------------&quot;</span>
     <span class="k">print</span> <span class="s2">&quot;Training set size: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
     <span class="n">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="k">print</span> <span class="s2">&quot;F1 score for training set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
     <span class="k">print</span> <span class="s2">&quot;F1 score for test set: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-    <span class="k">print</span> <span class="s2">&quot;------------------------------------------&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;==========================================&quot;</span>
 
 <span class="c1"># Run the helper function above for desired subsets of training data</span>
 <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
@@ -680,7 +697,33 @@ F1 score for test set: 0.810810810811
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>------------------------------------------
+<pre>==========================================
+Training set size: 100
+Training LogisticRegression...
+Done!
+Training time (secs): 0.001
+Predicting labels using LogisticRegression...
+Done!
+Prediction time (secs): 0.000
+F1 score for training set: 0.943661971831
+Predicting labels using LogisticRegression...
+Done!
+Prediction time (secs): 0.000
+F1 score for test set: 0.755905511811
+------------------------------------------
+Training set size: 200
+Training LogisticRegression...
+Done!
+Training time (secs): 0.002
+Predicting labels using LogisticRegression...
+Done!
+Prediction time (secs): 0.000
+F1 score for training set: 0.86301369863
+Predicting labels using LogisticRegression...
+Done!
+Prediction time (secs): 0.000
+F1 score for test set: 0.742857142857
+------------------------------------------
 Training set size: 300
 Training LogisticRegression...
 Done!
@@ -688,12 +731,12 @@ Training time (secs): 0.003
 Predicting labels using LogisticRegression...
 Done!
 Prediction time (secs): 0.000
-F1 score for training set: 0.820512820513
+F1 score for training set: 0.864864864865
 Predicting labels using LogisticRegression...
 Done!
 Prediction time (secs): 0.000
-F1 score for test set: 0.810810810811
-------------------------------------------
+F1 score for test set: 0.736842105263
+==========================================
 </pre>
 </div>
 </div>
@@ -704,7 +747,7 @@ F1 score for test set: 0.810810810811
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Train and predict using two other models</span>
@@ -730,35 +773,87 @@ F1 score for test set: 0.810810810811
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>SVC using rbf kernel
+==========================================
+Training set size: 100
+Training SVC...
+Done!
+Training time (secs): 0.005
+Predicting labels using SVC...
+Done!
+Prediction time (secs): 0.001
+F1 score for training set: 0.85
+Predicting labels using SVC...
+Done!
+Prediction time (secs): 0.001
+F1 score for test set: 0.778523489933
+------------------------------------------
+Training set size: 200
+Training SVC...
+Done!
+Training time (secs): 0.003
+Predicting labels using SVC...
+Done!
+Prediction time (secs): 0.002
+F1 score for training set: 0.888178913738
+Predicting labels using SVC...
+Done!
+Prediction time (secs): 0.001
+F1 score for test set: 0.778523489933
 ------------------------------------------
 Training set size: 300
 Training SVC...
 Done!
-Training time (secs): 0.007
+Training time (secs): 0.006
 Predicting labels using SVC...
 Done!
-Prediction time (secs): 0.004
-F1 score for training set: 0.866666666667
+Prediction time (secs): 0.005
+F1 score for training set: 0.882226980728
 Predicting labels using SVC...
 Done!
-Prediction time (secs): 0.002
-F1 score for test set: 0.825806451613
-------------------------------------------
+Prediction time (secs): 0.001
+F1 score for test set: 0.777777777778
+==========================================
 AdaBoost
+==========================================
+Training set size: 100
+Training AdaBoostClassifier...
+Done!
+Training time (secs): 0.078
+Predicting labels using AdaBoostClassifier...
+Done!
+Prediction time (secs): 0.005
+F1 score for training set: 0.963503649635
+Predicting labels using AdaBoostClassifier...
+Done!
+Prediction time (secs): 0.005
+F1 score for test set: 0.725806451613
 ------------------------------------------
-Training set size: 300
+Training set size: 200
 Training AdaBoostClassifier...
 Done!
 Training time (secs): 0.083
 Predicting labels using AdaBoostClassifier...
 Done!
-Prediction time (secs): 0.007
-F1 score for training set: 0.863309352518
+Prediction time (secs): 0.006
+F1 score for training set: 0.886597938144
 Predicting labels using AdaBoostClassifier...
 Done!
 Prediction time (secs): 0.005
-F1 score for test set: 0.755244755245
+F1 score for test set: 0.779411764706
 ------------------------------------------
+Training set size: 300
+Training AdaBoostClassifier...
+Done!
+Training time (secs): 0.084
+Predicting labels using AdaBoostClassifier...
+Done!
+Prediction time (secs): 0.006
+F1 score for training set: 0.853881278539
+Predicting labels using AdaBoostClassifier...
+Done!
+Prediction time (secs): 0.005
+F1 score for test set: 0.75
+==========================================
 </pre>
 </div>
 </div>
@@ -775,25 +870,62 @@ F1 score for test set: 0.755244755245
 <h2 id="5.-Choosing-the-Best-Model">5. Choosing the Best Model<a class="anchor-link" href="#5.-Choosing-the-Best-Model">&#182;</a></h2><ul>
 <li><p>Based on the experiments you performed earlier, in 1-2 paragraphs explain to the board of supervisors what single model you chose as the best model. Which model is generally the most appropriate based on the available data, limited resources, cost, and performance?</p>
 <ul>
-<li>I would choose SVM with the rbf kernel by considering the available data, limited resources, cost, and performance. Among three candidates that I chose (Logistic Regression, SVM, AdaBoost), Logistic Regression is another strong candidate. In terms of computation time and cost, this simple model takes shorter time with a smaller amount of computing cost. It performed quite good with the moderate level of scores (0.8205 for the training set and 0.8108 for the test set) to identify students who needs interventions. It is even better than AdaBoost, which is known to be very effective in practical problems. Despite all of this, I chose SVM because the most important criteria to decide a model is performance. In other words, SVM is the best algorithm to identify students to be intervened among those candidates.</li>
+<li>I would choose SVM with the rbf kernel by considering the available data, limited resources, cost, and performance. Among three candidates that I chose (Logistic Regression, SVM, AdaBoost), Logistic Regression takes shorter time with a smaller amount of computing cost. It performed quite good with the moderate level of scores (0.8205 for the training set and 0.8108 for the test set) to identify students who needs interventions. Adaboost shows the best test error from one of the multiple tests using each of the three algorithms on the three different training set sizes. Despite all of this, I would choose SVM to classify students into success and failure. Adaboost was unstable to the changes of training set sizes. Thus it implies that Adaboost would not be always better than other algorithms when a new test data is given. On the contrary, SVM is stable; SVM showed competitive scores and it was stable with the changes of training set sizes. Moreover, it tooks much shorter time than Adaboost. Therefore, by cosidering all aspects, I chose SVM with the rbf kernel.</li>
 </ul>
 </li>
 <li><p>In 1-2 paragraphs explain to the board of supervisors in layman's terms how the final model chosen is supposed to work (for example if you chose a Decision Tree or Support Vector Machine, how does it make a prediction).</p>
 <ul>
-<li>Let us assume that our data points are distributed on the two dimensional space. We can think of each point represents each student. Each student has a label on whether each student succeeds or not. SVM tries to find a line to separate two groups of points. When a new point are given to be classified, we can predict the class of a point by using the line. If the point falls into the area of success, the student is predicted to succeed. However, in real-world settings, it becomes more complex. We usually doesn't have linearly separable lines. To solve the problem, we project points into higher dimension and find hyperplanes to classify those points. This trick called the kernel trick and it is how SVM works.</li>
+<li>Let us assume that our data points are distributed on the two dimensional space. We can think of each point represents each student. Each student has a label on whether each student succeeds or not. In simple cases, SVM tries to find a straight line to separate two groups of points. When a new point are given to be classified, we can predict the class of a point by using the line. If the point falls into the area of success, the student is predicted to succeed. However, how can we find a line if there is no possible straight lines to separate two groups of instances? To handle the case, we use a simple trick. Please see the embedded Youtube video below. We have two groups of points that cannot be classified into two using a simple line. But by lifting up the points on the 2-D into the 3-D space, we can separate those points using a plane. By transforming the plane of the 3-D space into the 2-D plane back, we can get a curved line to separate two groups of points. Finding a plane on the 3-D space is technically same as we find a straight line on the 2-D plane. It is how SVM works to find a model to classify two clasees, and we can make it in a same way when the number of features are more than two.</li>
 </ul>
 </li>
 <li><p>Fine-tune the model. Use Gridsearch with at least one important parameter tuned and with at least 3 settings. Use the entire training set for this.</p>
 </li>
 </ul>
-<p>By conducting GridSearchCV for SVM, the best model has a F<sub>1</sub> score of 0.8481.</p>
+<p>By conducting GridSearchCV for SVM, the best model has a F<sub>1</sub> score of 0.7692.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;3liCbRZPrZA&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+        <iframe
+            width="400"
+            height="300"
+            src="https://www.youtube.com/embed/3liCbRZPrZA"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c1"># Fine-tune your model and report the best F1 score</span>
@@ -828,7 +960,33 @@ F1 score for test set: 0.755244755245
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The best parameters are {&apos;C&apos;: 100.0, &apos;gamma&apos;: 0.0001} with a score of 0.81
+<pre>The best parameters are {&apos;C&apos;: 10.0, &apos;gamma&apos;: 0.001} with a score of 0.83
+==========================================
+Training set size: 100
+Training SVC...
+Done!
+Training time (secs): 0.001
+Predicting labels using SVC...
+Done!
+Prediction time (secs): 0.001
+F1 score for training set: 0.834355828221
+Predicting labels using SVC...
+Done!
+Prediction time (secs): 0.001
+F1 score for test set: 0.778523489933
+------------------------------------------
+Training set size: 200
+Training SVC...
+Done!
+Training time (secs): 0.003
+Predicting labels using SVC...
+Done!
+Prediction time (secs): 0.002
+F1 score for training set: 0.845679012346
+Predicting labels using SVC...
+Done!
+Prediction time (secs): 0.001
+F1 score for test set: 0.780821917808
 ------------------------------------------
 Training set size: 300
 Training SVC...
@@ -837,29 +995,16 @@ Training time (secs): 0.006
 Predicting labels using SVC...
 Done!
 Prediction time (secs): 0.004
-F1 score for training set: 0.814655172414
+F1 score for training set: 0.84388185654
 Predicting labels using SVC...
 Done!
 Prediction time (secs): 0.001
-F1 score for test set: 0.848101265823
-------------------------------------------
+F1 score for test set: 0.769230769231
+==========================================
 </pre>
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre> 
-</pre></div>
-
-</div>
 </div>
 </div>
 
